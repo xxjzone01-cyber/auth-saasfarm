@@ -18,17 +18,32 @@ GOOGLE_CLIENT_SECRET=your-google-client-secret
 
 # NextAuth
 NEXTAUTH_URL=https://auth.saasfarm.net
-NEXTAUTH_SECRET=your-random-secret-here
+NEXTAUTH_SECRET=your-random-secret-here (minimum 32 characters)
 
-# JWT (optional, use same as NEXTAUTH_SECRET for simplicity)
-JWT_SECRET=your-jwt-secret
+# Node Environment
+NODE_ENV=production
 ```
 
 ## Deploy to Cloudflare Pages
 
+**📖 详细的部署指南请查看：[CLOUDFLARE_DEPLOYMENT.md](./CLOUDFLARE_DEPLOYMENT.md)**
+
+### Quick Start
+
 1. Connect GitHub repo to Cloudflare Pages
-2. Set environment variables
-3. Deploy!
+2. Set framework preset to **Next.js**
+3. Configure environment variables (see above)
+4. Add custom domain: `auth.saasfarm.net`
+5. Deploy!
+
+### Build Settings
+
+```
+Framework preset: Next.js
+Build command: npm run build
+Build output directory: .next
+Node.js version: 18.x
+```
 
 ## Tech Stack
 
@@ -38,3 +53,7 @@ JWT_SECRET=your-jwt-secret
 - NextAuth.js
 - Google OAuth
 - Cloudflare Pages
+
+## Troubleshooting
+
+如果遇到问题，请查看详细的故障排查指南：[CLOUDFLARE_DEPLOYMENT.md](./CLOUDFLARE_DEPLOYMENT.md#故障排查)

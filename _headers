@@ -1,0 +1,13 @@
+# Cloudflare Pages Headers 配置
+# 确保跨域 cookie 工作
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: origin-when-cross-origin
+
+# 允许跨域请求
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization
