@@ -1,30 +1,43 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-node_modules
-.next
-out
-build
+/node_modules
+/.pnp
+.pnp.js
 
 # testing
-coverage
-*.lcov
+/coverage
+
+# next.js
+/.next/
+/out/
 
 # production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 # local env files
 .env*.local
-.env
-.env.*
+.env.production
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
 
-# debug
-*.log
+# Cloudflare config files with secrets
+STEP_BY_STEP_SETUP.md
+setup-cf-api.ps1
+setup-cloudflare.js
+setup-cloudflare.ps1
+setup-simple.ps1
+CLOUDFLARE_SETUP.md
+DEPLOYMENT_FINAL.md
