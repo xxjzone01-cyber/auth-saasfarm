@@ -2,9 +2,9 @@
 
 import { signIn, useSession } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 
-export default function LoginPage() {
+function LoginPageContent() {
   const searchParams = useSearchParams()
   const { data: session, status } = useSession()
   const [isRedirecting, setIsRedirecting] = useState(false)
@@ -23,7 +23,7 @@ export default function LoginPage() {
         sub: session.user?.email,
         email: session.user?.email,
         name: session.user?.name,
-        site: session.site || site,
+        site: site,
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60) // 7天
       }
@@ -32,10 +32,9 @@ export default function LoginPage() {
       const token = btoa(JSON.stringify(payload))
 
       // 跳转回业务域
-      const redirectUrl = session.redirect || redirect
-      window.location.href = `${redirectUrl}?token=${token}`
+      window.location.href = `${redirect}?token=${token}`
     }
-  }, [session, status, redirect, isRedirecting])
+  }, [session, status, redirect, site, isRedirecting])
 
   const handleLogin = () => {
     // 构造 state 参数传递站点信息
@@ -80,5 +79,17 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <LoginPageContent />
+    </Suspense>
   )
 }
